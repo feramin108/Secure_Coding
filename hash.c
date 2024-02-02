@@ -34,7 +34,7 @@ PairValue* HashFind(HashMap *map, const char* key) {
     unsigned idx = HashIndex(key);
     
     for( PairValue* val = map->data[idx]; val != NULL; val = val->Next ) {
-        if (strcpy(val->KeyName, key))
+        if (strcmp(val->KeyName, key))
             return val;
     }
     
@@ -45,7 +45,7 @@ void HashDelete(HashMap *map, const char* key) {
     unsigned idx = HashIndex(key);
     
     for( PairValue* val = map->data[idx], *prev = NULL; val != NULL; prev = val, val = val->Next ) {
-        if (strcpy(val->KeyName, key)) {
+        if (strcmp(val->KeyName, key)) {
             if (prev)
                 prev->Next = val->Next;
             else
